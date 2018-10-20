@@ -1,0 +1,41 @@
+
+
+ <div class="container">
+    <div class="row">
+        <div class="col-12">
+<!--                operation and number selector-->
+            <select [(ngModel)]="selectedOp">
+                <option *ngFor="let op of operations" [ngValue]="op">{{op.name}}</option>
+            </select>
+            <input type="number" [(ngModel)]="nr" placeholder="enter a number"/>
+
+            <button type="button" class="btn btn-primary" (click)="add()">Add step</button>
+        </div>
+    </div>
+    <div class="row" >
+        <div class="coll-12 container" style="background-color: beige ; height: 150px">
+            <ol *ngIf="selectedCalcList.length">
+                <li *ngFor="let selectedCalc of selectedCalcList">
+                    <div >  
+                            {{selectedCalc.name}} {{selectedCalc.nr}}
+                    </div>  
+                </li>
+            </ol>
+        </div>
+    </div>
+    <div class="row">
+        <div class="coll-12">
+<!--                calculate and reset buttons-->
+            <button type="button" class="btn btn-warning" (click)="calculate()">Calculate</button>
+            <button type="button" class="btn btn-success" (click)="reset()">Reset</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="coll-12">
+<!--                show result-->
+            <h1>
+                <span class="label label-info" >{{result}}</span>
+            </h1>
+        </div>
+    </div>
+</div>
