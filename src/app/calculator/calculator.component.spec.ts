@@ -57,9 +57,9 @@ describe('CalculatorComponent', () => {
             {name:'add', value:'+', nr:'2'},
             {name:'multiply', value:'*', nr:'3'},
             {name:'', value:'', nr:'3'}
-        ]
-        component.calculate();
-        expect(component.result).toEqual(15);
+      ];
+      component.calculate();
+      expect(component.result).toEqual(15);
     });
   });
 
@@ -68,9 +68,9 @@ describe('CalculatorComponent', () => {
       component.selectedCalcList = [
         {name:'multiply', value:'*', nr:'9'},
         {name:'', value:'', nr:'5'},
-      ]
-        component.calculate();
-        expect(component.result).toEqual(45);
+      ];
+      component.calculate();
+      expect(component.result).toEqual(45);
     });
   });
 
@@ -78,8 +78,9 @@ describe('CalculatorComponent', () => {
     it('apply 1 = 1', ()=>{
       component.selectedCalcList = [
         {name:'', value:'', nr:'1'}
-      ]
-      expect(component.calculate()).toEqual('1');
+      ];
+      component.calculate();
+      expect(component.result).toEqual(1);
     });
   });
 

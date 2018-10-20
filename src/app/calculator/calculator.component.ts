@@ -22,14 +22,7 @@ export class CalculatorComponent {
   @Input() nr: number;
   @Input() selectedOp: Operation;
 
-
-  constructor() {console.log('i am the constructor'); }
-  
-  ngOnInit() {console.log('i am the init'); } 
-  
   add(){
-    console.log('add click');
-    //debugger;
     this.selectedCalcList.push({
         name: this.selectedOp.name,
         value: this.selectedOp.value,
@@ -38,48 +31,40 @@ export class CalculatorComponent {
   }
   
   reset(){
-    console.log('reset click');
     this.nr = 0;
     this.result = 0;
     this.selectedCalcList = [];
     this.selectedOp = null;    
-  }
+  };
   
-  evaluateCalcList = function(selecectedCalcs){
-    let calcLength = selecectedCalcs.length-1;
-    let startNr = selecectedCalcs[calcLength].nr
-    let result = startNr;
-    for(let i=0; i<calcLength; i++){
-      result = this.applyOp(result)(selecectedCalcs[i]);
-    }
-    return result;
-  }
-
   applyOp = function(result){
     return function(selected){
       switch(selected.value){
         case "*": 
-            result = result * selected.nr; 
+            result = result * Number.parseInt(selected.nr); 
             break;
         case "/": 
-            result = result / selected.nr; 
+            result = result / Number.parseInt(selected.nr); 
             break;
         case "-": 
-            result = result - selected.nr; 
+            result = result - Number.parseInt(selected.nr); 
             break;
         case "+": 
-            result = result + selected.nr; 
+            result = result + Number.parseInt(selected.nr); 
             break;
       }
       return result;
-    }
-  }
+    };
+  };
 
   calculate = function(){
-    console.log('calculate click');
-    this.result = this.evaluateCalcList(this.selectedCalcList);
-    return this.result;
-  } 
+    let calcLength = this.selectedCalcList.length-1;
+    let startNr = this.selectedCalcList[calcLength].nr
+    this.result = Number.parseInt(startNr);
+    for(let i=0; i<calcLength; i++){
+      this.result = this.applyOp(this.result)(this.selectedCalcList[i]);
+    };
+  };
 }
 
 
